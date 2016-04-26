@@ -3,5 +3,21 @@
 extends layout
 block content
    h1= title
+
+   table.table.table-bordered.table-hover
+      thead
+         tr
+            th 用户id
+            th 用户名
+            th 用户身份
+           
+      tbody
+         each item in users
+            tr
+            td #{item.id}
+            td #{item.username}
+            td #{item.role}
+
+
    form(action="#"  role="form" method="post")
-      a(href='/' class='btn btn-primary') 退出
+      a(href='/logout' class='btn btn-primary') 退出

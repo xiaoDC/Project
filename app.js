@@ -6,11 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var multer = require('multer'); //处理上传的中间件
-var mongoose = require('mongoose');
-var MyModel = require('./model/model');
-
-
-
+var userModel = require('./model/user')
 
 
 
@@ -38,17 +34,11 @@ app.use(session({
     resave:true,
     saveUninitialized:false,
     cookie:{
-        maxAge:1000*60*10  //过期时间设置(单位毫秒)
+        maxAge:1000*60*30  //过期时间设置(单位毫秒)
     }
 }));
 
-app.use(function(req, res, next){
-    res.locals.user = req.session.user;
-    var err = req.session.error;
-    res.locals.message = '';
-    if (err) res.locals.message = '<div style="margin-bottom: 20px;color:red;">' + err + '</div>';
-    next();
-});
+
 
 app.use('/', routes);
 app.use('/users', users);

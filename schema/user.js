@@ -25,7 +25,36 @@ userSchema.pre('save', function(next) {
     })
 })
 
+userSchema.methods = {
+    comparePassword: function (_password, cb) {
+        bcrypt.compare(_password, this.password, function (err, isMatch) {
+            if (err) {
+                cb(err)
+            }
+            cb(null, isMatch)
+        })
+    }
+}
 
+//静态方法：fetch查找所有的用户，findById通过id查找用户,通过模型就可以调用
+userSchema.statics = {
+    fetch: function(cb) {
+        return this
+            .find({})
+            .sort('meta.updateAt')
+            .exec(cb)
+    },
+    findById: function(id, cb) {
+        return this.findOne({
+            _id: id
+        }).exec(cb)
+    },
+    findByName: function (_name, cb) {
+        return this.findOne({
+            username: _name
+        }).exec(cb)
+    }
+}
 
 
 

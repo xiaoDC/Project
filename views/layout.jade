@@ -1,14 +1,29 @@
 doctype html
 html
   head
-    meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
-    title=title
-    link(href="/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
-    script(src="/jquery/dist/jquery.min.js")
-    script(src="/bootstrap/dist/js/bootstrap.min.js")
+    include ./head
 
-    
-  body(style="padding-left:30px;")
-    block content
+  body
+    div.warp
+      div.header
+        ul.list_inline
+          li
+            span
+              a(href="login") 登陆
+          li
+            span
+              a(href="signup") 注册
+          li
+            span
+              a(href="#") 我的订单
+          li
+            span
+              a(href="#") 购物车
+          li
+            span
+              a(href="#") 客服中心
 
-    h5  welcome to #{title}
+      block content
+      include ./footer
+
+
