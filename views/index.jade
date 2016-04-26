@@ -1,6 +1,291 @@
 extends layout
 block content
-	h1= title
-	a(href="/login" class="btn btn-primary") 登陆
+	div.header_mid
+		div( class="normal-search-content")
+			div(class="top_nav_search" id="nav_search_form")  <!--搜索框 -->
+				div(id="search_inner_box")
+					select(name="little_option" class="no_outline")
+						option 商品
+						option 商品
 
 
+				form(action="/search/" method="get" id="top_nav_form")
+					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="春装最新潮衬衫系列" value="" autocomplete="off")
+					input(type="submit" value="搜  索" class="ts_btn")
+
+	div.body_warp
+		div.header_nav
+			div.warp
+				div#rightbar.float_right
+					ul
+						li 购物车
+						li 优惠券
+						li 钱包
+						li 足迹
+
+				ul.nav_list.list_inline
+					li 全部商品
+					li 团购
+					li 快抢
+					li 红人馆
+
+		div.body_main
+			ul.primary_list
+				li.primary_li
+					dl.nav_warp
+						dt
+							a(href="#") 上衣
+						dd
+							span
+								a(href="#") 新上春
+								a(href="#") 时尚套装
+								a(href="#") 衬衫
+					div.nav_more
+						dl.nav_more_warp
+							dt
+								a(href="#") 新品上市
+							dd
+								span
+									a(href="#") 牛仔外套
+									a(href="#") 卫衣
+									a(href="#") 棒球外套
+									a(href="#") T恤
+									a(href="#") 风衣
+									a(href="#") 织衫
+									a(href="#") 背心吊带
+									a(href="#") 马甲
+									a(href="#") 毛衣
+									a(href="#") 大码上衣
+									a(href="#") 雪纺衫
+
+						dl.nav_more_warp
+							dt
+								a(href="#") 当季热卖
+							dd
+								span
+									a(href="#") 牛仔外套
+									a(href="#") 卫衣
+									a(href="#") 棒球外套
+									a(href="#") T恤
+									a(href="#") 风衣
+									a(href="#") 织衫
+									a(href="#") 背心吊带
+									a(href="#") 马甲
+									a(href="#") 毛衣
+									a(href="#") 大码上衣
+									a(href="#") 雪纺衫
+
+						dl.nav_more_warp
+							dt
+								a(href="#") 流行元素
+							dd
+								span
+									a(href="#") 牛仔外套
+									a(href="#") 卫衣
+									a(href="#") 棒球外套
+									a(href="#") T恤
+									a(href="#") 风衣
+									a(href="#") 织衫
+									a(href="#") 背心吊带
+									a(href="#") 马甲
+									a(href="#") 毛衣
+									a(href="#") 大码上衣
+									a(href="#") 雪纺衫
+
+				li.primary_li
+					dl.nav_warp
+						dt
+							a(href="#") 裙子
+						dd
+							span
+								a(href="#") 新上春
+								a(href="#") 连衣裙
+								a(href="#") 蕾丝裙
+					div.nav_more
+						dl.nav_more_warp
+							dt
+								a(href="#") 新品上市
+							dd
+								span
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+
+						dl.nav_more_warp
+							dt
+								a(href="#") 当季热卖
+							dd
+								span
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+
+						dl.nav_more_warp
+							dt
+								a(href="#") 流行元素
+							dd
+								span
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+									a(href="#") 连衣裙
+
+
+
+			div#img_play
+					div#img_list
+						img(src="/images/5.jpg")
+						img(src="/images/1.jpg")
+						img(src="/images/2.jpg")
+						img(src="/images/3.jpg")
+						img(src="/images/4.jpg")
+						img(src="/images/5.jpg")
+						img(src="/images/1.jpg")
+
+					div#img_botton
+						span(index="1" class="on")
+						span(index="2" )
+						span(index="3" )
+						span(index="4" )
+						span(index="5" )
+					a(id="prev" class="arrow") &lt;
+					a(id="next" class="arrow") &gt;
+
+			div#nav_simg
+				div#img_border
+					img(src="/images/s1.png")
+				img(src="/images/s2.png")
+
+
+		div.body_content
+			div(class="book_show")
+				a(href="book1")
+					img(src="/images/12.png" width="100px" height="134px")
+			div(class="book_show")
+				a(href="book1")
+					img(src="/images/12.png" width="100px" height="134px")
+
+
+
+
+
+	script.
+		$(document).ready(function(){
+
+			$('.primary_li').mouseover(function(){
+				$(this).find('.nav_more').css("display","block");
+			});
+			$('.primary_li').mouseout(function(){
+				$(this).find('.nav_more').css("display","none");
+			});
+
+
+			var container = $('#img_play');
+			var list = $('#img_list');
+			var buttons = $('#img_botton span');
+			var prev = $('#prev');
+			var next = $('#next');
+			var index = 1;
+			var len = 5;
+			var interval = 3000;
+			var timer;
+
+			function animate(offset) {
+				var left = parseInt(list.css('left')) + offset;
+				if (offset > 0) {
+					offset = '+=' + offset;
+				}
+				else {
+					offset = '-=' + Math.abs(offset);
+				}
+				list.animate({'left': offset}, 300, function () {
+					if (left > -223) {
+						list.css('left', -715 * len);
+					}
+					if (left < (-715 * len)) {
+						list.css('left', -715);
+					}
+				});
+			}
+
+			function showButton() {
+				buttons.eq(index - 1).addClass('on').siblings().removeClass('on');
+			}
+
+			function play() {
+				timer = setTimeout(function () {
+					next.trigger('click');
+					play();
+				}, interval);
+			}
+
+			function stop() {
+				clearTimeout(timer);
+			}
+
+			next.bind('click', function () {
+				if (list.is(':animated')) {
+					return;
+				}
+				if (index == 5) {
+					index = 1;
+				}
+				else {
+					index += 1;
+				}
+				animate(-715);
+				showButton();
+			});
+			prev.bind('click', function () {
+				if (list.is(':animated')) {
+					return;
+				}
+				if (index == 1) {
+					index = 5;
+				}
+				else {
+					index -= 1;
+				}
+				animate(715);
+				showButton();
+			});
+			buttons.each(function () {
+				$(this).bind('click', function () {
+					if (list.is(':animated') || $(this).attr('class') == 'on') {
+						return;
+					}
+					var myIndex = parseInt($(this).attr('index'));
+					var offset = -715 * (myIndex - index);
+					animate(offset);
+					index = myIndex;
+					showButton();
+				})
+			});
+			container.hover(stop, play);
+			play();
+
+
+		});
