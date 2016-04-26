@@ -1,37 +1,53 @@
+doctype html
+html
+	head
+		include ./head
+	body
+	.container.contentTop
+		.row
+			.col-md-4
+				form(method="POST", action="/login")
+					h2 登陆
+					.form-group
+						label(for="loginName") 用户名
+						input#signupName.form-control(name="user[username]", type="text")
+					.form-group
+						label(for="loginPassword") 密码
+						input#signupPassword.form-control(name="user[password]", type="text")
+					.text-center
+						button.btn.btn-primary(type="submit") 提交
 
-extends layout
-block content
-	h1= title
-	form(action="/login"  role="form" method="post" style="margin-left:20px;")
-	input(id="username" type="text" name="username" style="margin: 20px 0px;")
-	br
-	input(id="password" type="text" name="password" style="margin: 20px 0px;")
-	br
-	input(type="button" onclick="login();" value="登陆" class="btn btn-primary")
-
-	script.
-		function login(){
-			var username = $('#username').val();
-			var password = $('#password').val();
-			var data = {"username":username,"password":password};
-			$.ajax({
-			url:'login',
-			type:'POST',
-			data:data,
-			success:function(data,status){
-			if(status == 'success'){
-			location.href='home';
-
-			}
-
-			},
-			error:function(data,status,e){
-			if(status == "error"){
-			location.href='login';
-				alert("登陆失败");
+					div( id="login_b")
+						a 忘记密码
+						a 还不是会员
+						a(class="btn btn-primary btn-xs" href="signup") 免费注册
 
 
-			}
-			}
-			});
-		}
+		include ./footer
+		//
+			script.
+				function login(){
+					var username = $('#username').val();
+					var password = $('#password').val();
+					var data = {"username":username,"password":password};
+					$.ajax({
+					url:'login',
+					type:'post',
+					data:data,
+					success:function(data,status){
+					if(status == 'success'){
+					location.href='home';
+
+					}
+
+					},
+					error:function(data,status,e){
+					if(status == "error"){
+					location.href='login';
+						alert("登陆失败！");
+
+
+					}
+					}
+					});
+				}

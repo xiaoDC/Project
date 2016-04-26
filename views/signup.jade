@@ -1,4 +1,20 @@
+doctype html
+html
+	head
+		include ./head
+	body
+	.container.contentTop
+		.row
+			.col-md-4
+				form(method="POST", action="/signup")
+					h2 注册
 
-	//
-   Created by blue on 2016/4/24.
+					.form-group
+						label(for="signupName") 用户名
+						input#signupName.form-control(name="user[username]", type="text")
+					.form-group
+						label(for="signupPassword") 密码
+						input#signupPassword.form-control(name="user[password]", type="text")
 
+					.text-center
+						button.btn.btn-primary(type="submit") 提交
