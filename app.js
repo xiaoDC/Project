@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var connect = require('connect');
+var mongoStore = require('connect-mongo')(session);
 var multer = require('multer'); //处理上传的中间件
 var userModel = require('./model/user')
 
@@ -31,8 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('bower_components'));
 app.use(session({
     secret:'secret',
-    resave:true,
-    saveUninitialized:false,
+    store:new mongoStore({
+       url:"mongodb://127.0.0.1:27017/test",
+       collection:"users"
+    }),
+    resave:false,
+    saveUninitialized:true,
     cookie:{
         maxAge:1000*60*30  //过期时间设置(单位毫秒)
     }

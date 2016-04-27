@@ -7,21 +7,22 @@ html
     div.warp
       div.header
         ul.list_inline
-          li
-            span
-              a(href="login") 登陆
-          li
-            span
-              a(href="signup") 注册
-          li
-            span
-              a(href="#") 我的订单
-          li
-            span
-              a(href="#") 购物车
-          li
-            span
-              a(href="#") 客服中心
+          if user
+            li
+              span 欢迎您 {#user.username}
+
+            li
+              span
+                a(href="signup") 注册
+
+          else
+            li
+              span
+                a(href="login") 登陆
+            li
+              span
+                a(href="signup") 注册
+
 
       block content
       include ./footer
