@@ -37,8 +37,8 @@ app.use(session({
        url:"mongodb://127.0.0.1:27017/test",
        collection:"users"
     }),
-    resave:false,
-    saveUninitialized:true,
+    resave:true,
+    saveUninitialized:false,
     cookie:{
         maxAge:1000*60*30  //过期时间设置(单位毫秒)
     }

@@ -12,6 +12,7 @@ db.connection.on("open", function () {
 
 
 router.get('/', function(req, res, next) {
+
   res.render('index');
 });
 
