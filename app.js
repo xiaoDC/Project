@@ -35,7 +35,7 @@ app.use(session({
     secret:'secret',
     store:new mongoStore({
        url:"mongodb://127.0.0.1:27017/test",
-       collection:"users"
+       collection:"sessions"
     }),
     resave:true,
     saveUninitialized:false,
@@ -45,6 +45,12 @@ app.use(session({
 }));
 
 
+app.use(function (req, res, next) {
+    var _user = req.session.user
+    app.locals.user = _user
+    console.log(_user)
+    next()
+})
 
 app.use('/', routes);
 app.use('/users', users);

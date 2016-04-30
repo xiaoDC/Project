@@ -11,6 +11,9 @@ db.connection.on("open", function () {
 });
 
 
+
+
+
 router.get('/', function(req, res, next) {
 
   res.render('index');
@@ -43,12 +46,12 @@ router.post('/signup',function(req,res){
 
 })
 router.get('/signup',function(req,res){
-    res.render('signup');
+     res.render('signup');
 })
 
 //login
 router.get('/login',function(req,res){
-    res.render('login');
+     res.render('login');
 });
 
 router.post('/login',function(req,res){
@@ -80,7 +83,7 @@ router.post('/login',function(req,res){
             console.log(err)
         }
         if(!user){
-           return res.redirect('/')
+            res.redirect('/')
         }
         if (user) {
             user.comparePassword(password, function (err, isMatch) {
@@ -91,15 +94,15 @@ router.post('/login',function(req,res){
                     req.session.user = user
                     console.log('密码正确')
 
-                    return res.redirect('/home')
+                    res.redirect(302,'/home')
                 } else {
                     console.log('密码错误')
 
-                    return  res.redirect('/login')
+                      res.redirect('/login')
                 }
             })
         } else {
-            return  res.redirect('/login')
+             res.redirect('/login')
         }
     })
 
@@ -109,7 +112,7 @@ router.post('/login',function(req,res){
 router.get('/logout', function(req, res){
     req.session.user = null;
     req.session.error = null;
-    res.redirect(303,'/');
+    res.redirect(302,'/');
 });
 
 router.get('/home',function(req,res){
@@ -118,12 +121,12 @@ router.get('/home',function(req,res){
             console.log(err)
         }
         if(req.session.user){
-            res.render('home',{
+             res.render('home',{
                 users:users,
             });
         }else{
             req.session.error = "请先登录";
-            res.redirect(303,'login');
+             res.redirect(302,'login');
         }
 
 
@@ -136,5 +139,6 @@ router.get('/book1',function(req,res){
     res.render('book1')
 
 })
+
 
 module.exports = router;
