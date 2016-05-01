@@ -7,15 +7,15 @@ html
     div.warp
       div.header
         ul.list_inline
-          else
+          if user
             li
-              span 欢迎您 {#user.username}
+              span 欢迎您，【#{user.username}】
 
             li
               span
-                a(href="logout") 登出
+                a(href="logout") 退出
 
-          if user
+          else
             li
               span
                 a(href="login") 登陆
