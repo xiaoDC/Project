@@ -8,11 +8,13 @@ userModel.find(function(err,user){
     new userModel({
         username:"blue",
         password:"123",
+        role:'user'
     }).save();
 
     new userModel({
-        username:"taylor",
+        username:"admin",
         password:"123",
+        role:'admin'
 
     }).save();
 

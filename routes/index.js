@@ -93,8 +93,7 @@ router.post('/login',function(req,res){
                 if (isMatch) {
                     req.session.user = user
                     console.log('密码正确')
-
-                    res.redirect(302,'/home')
+                    res.redirect('/home')
                 } else {
                     console.log('密码错误')
 
@@ -116,17 +115,19 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/home',function(req,res){
+    var _user=req.session.user
     userModel.find(function(err,users){
         if(err){
             console.log(err)
         }
-        if(req.session.user){
+        if(req.session.user && _user.role=='admin'){
+
              res.render('home',{
                 users:users,
             });
         }else{
             req.session.error = "请先登录";
-             res.redirect(302,'login');
+             res.redirect('login');
         }
 
 
