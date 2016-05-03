@@ -1,0 +1,13 @@
+block content
+	.container.contentTop
+		.row
+		each item in posts
+			table.table.table-hover.table-bordered
+				thead
+					tr #{item.title}
+
+
+				tbody
+					td #{item.content}
+
+				button.btn.btn-danger.del(type="button", data-id="#{item._id}") É¾³ý

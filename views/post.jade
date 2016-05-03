@@ -1,0 +1,9 @@
+extends layout
+block content
+	form
+		.form-group
+			label 文字标题
+			input.form-control(type='text' name='post[title]' placeholder='文章标题')
+			label 文章内容
+			textarea.form-control(row="3")
+			botton(type='submit').btn.btn-primary 发表文章
