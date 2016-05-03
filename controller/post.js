@@ -1,3 +1,4 @@
-/**
- * Created by blue on 2016/5/3.
- */
+
+exports.post=function(req,res){
+    res.render('post')
+}

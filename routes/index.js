@@ -5,6 +5,7 @@ var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
 
 var Index = require('../controller/index')
 var User = require('../controller/user')
+var Post = require('../controller/post')
 db.connection.on("error", function (error) {
     console.log("数据库连接失败：" + error);
 });
@@ -27,7 +28,8 @@ router.get('/logout', User.logout)
 //userList
 router.get('/userList',User.userList)
 
-
+//post
+router.get('/post',Post.post)
 
 
 

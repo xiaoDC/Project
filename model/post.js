@@ -1,3 +1,7 @@
-/**
- * Created by blue on 2016/5/3.
- */
+var mongoose = require('mongoose');
+var postSchema = require('../schema/post');
+var postModel = mongoose.model('post',postSchema);
+
+
+
+module.exports = postModel;

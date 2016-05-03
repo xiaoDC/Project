@@ -59,9 +59,7 @@ exports.login=function(req,res){
         if (err) {
             console.log(err)
         }
-        if(!user){
-            res.redirect('/')
-        }
+
         if (user) {
             user.comparePassword(password, function (err, isMatch) {
                 if (err) {
