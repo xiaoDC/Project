@@ -8,9 +8,16 @@ var session = require('express-session');
 var connect = require('connect');
 var mongoStore = require('connect-mongo')(session);
 var multer = require('multer'); //处理上传的中间件
-var userModel = require('./model/user')
+var flash = require('connect-flash')
 
-
+var mongoose = require('mongoose');
+var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+db.connection.on("error", function (error) {
+    console.log("数据库连接失败：" + error);
+});
+db.connection.on("open", function () {
+    console.log("------数据库连接成功！------");
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +35,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
+app.use(flash());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('bower_components'));
