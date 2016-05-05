@@ -5,6 +5,7 @@ exports.showPost=function(req,res){
 }
 
 exports.posts=function(req,res){
+    var _user = req.session.user
     var _post = req.body.post
     console.log("123")
     console.log(_post)
@@ -13,6 +14,6 @@ exports.posts=function(req,res){
         if (err) {
             console.log(err)
         }
-        res.redirect('userMain')
+        res.redirect('/userMain/'+_user._id)
     })
 }

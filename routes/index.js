@@ -1,17 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+
 
 var Index = require('../controller/index')
 var User = require('../controller/user')
 var Post = require('../controller/post')
-db.connection.on("error", function (error) {
-    console.log("数据库连接失败：" + error);
-});
-db.connection.on("open", function () {
-    console.log("------数据库连接成功！------");
-});
+
 
 
 
@@ -24,12 +18,16 @@ router.get('/signup',User.showSignup)
 router.get('/login',User.showLogin)
 router.post('/login',User.login)
 //logout
-router.get('/logout', User.logout)
+router.get('/logout',User.loginRequired, User.logout)
+//用户主页
+router.get('/userMain/:id',User.loginRequired,User.userMain)
 //userList
-router.get('/userList',User.userList)
+router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
 
 //post
-router.get('/post',Post.post)
+router.get('/post',User.loginRequired,Post.showPost)
+router.post('/post',User.loginRequired,Post.posts)
+
 
 
 

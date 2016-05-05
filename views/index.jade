@@ -13,3 +13,18 @@ block content
 					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" value="" autocomplete="off")
 					input(type="submit" value="搜  索" class="ts_btn")
 
+
+	table.table.table-bordered.table-hover
+		thead
+			tr
+				th 标题
+				th 正文
+				th 作者
+				th 日期
+		tbody
+			each item in post
+				tr
+					td #{item.title}
+					td #{item.content}
+					td #{item.user}
+					td #{item.meta.createAt}

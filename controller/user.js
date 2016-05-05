@@ -1,4 +1,6 @@
 var userModel = require('../model/user')
+var postModel = require('../model/post')
+
 //signup
 exports.signup=function(req,res){
     var _user = req.body.user
@@ -55,7 +57,7 @@ exports.login=function(req,res){
     console.log(_user)
     console.log(username)
     userModel.findOne({"username":username}, function (err, user){
-        console.log(user)
+
         if (err) {
             console.log(err)
         }
@@ -67,6 +69,7 @@ exports.login=function(req,res){
                 }
                 if (isMatch) {
                     req.session.user = user
+
                     console.log('ÃÜÂëÕýÈ·')
                     if(req.session.user.role=="admin")
                         res.redirect('/userList')
@@ -109,8 +112,40 @@ exports.userList=function(req,res){
             req.session.error = "ÇëÏÈµÇÂ¼";
             res.redirect('login');
         }
-
-
     })
+}
 
+//userMain
+exports.userMain=function(req,res){
+    var _id = req.params.id
+    userModel.findById(_id,function(err,user){
+        if(err){
+            console.log(err)
+        }
+        if(!user){
+            req.flash('error',err)
+            res.redirect('/')
+        }
+        else{
+            res.render('userMain',{
+                user:user
+            })
+        }
+    })
+}
+
+exports.loginRequired = function (req, res, next) {
+    var user = req.session.user
+    if (!user) {
+        return res.redirect('/login')
+    }
+    next()
+}
+
+exports.adminRequired = function (req, res, next) {
+    var user = req.session.user
+    if (user.role !=="admin" || !user.role) {
+        return res.redirect('/login')
+    }
+    next()
 }
