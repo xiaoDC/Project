@@ -1,21 +1,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
+var date = new Date()
 var postSchema = new Schema({
-  user:{
-      type: ObjectId,
-      ref: 'userModel'
-  },
-  title:String,
-  content:String,
-  meta:{
+    user:{
+        type: ObjectId,
+        ref: 'userModel'
+    },
+    title:String,
+    content:String,
+    meta:{
         createAt: {
-            type: Date,
-            default: Date.now()
+            type: String,
+            default: date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
         },
         updateAt: {
-            type: Date,
-            default: Date.now()
+            type: String,
+            default:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
         }
     }
 
@@ -24,13 +25,13 @@ var postSchema = new Schema({
 
 postSchema.pre('save', function(next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = Date.now()
+        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
     } else {
-        this.meta.updateAt = Date.now()
+        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
     }
     next()
 })
-//¾²Ì¬·½·¨£ºfetch²éÕÒËùÓĞµÄÓÃ»§£¬findByIdÍ¨¹ıid²éÕÒÓÃ»§,Í¨¹ıÄ£ĞÍ¾Í¿ÉÒÔµ÷ÓÃ
+//é™æ€æ–¹æ³•ï¼šfetchæŸ¥æ‰¾æ‰€æœ‰çš„ç”¨æˆ·ï¼ŒfindByIdé€šè¿‡idæŸ¥æ‰¾ç”¨æˆ·,é€šè¿‡æ¨¡å‹å°±å¯ä»¥è°ƒç”¨
 postSchema.statics = {
     fetch: function(cb) {
         return this
