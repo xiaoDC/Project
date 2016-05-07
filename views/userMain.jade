@@ -2,5 +2,16 @@ extends layout
 block content
 	.container.contentTop
 		.row
-			h1 #{user.username}
-			a(href="/post") 写博客->
+			h1 #{name}
+			if(user.username === name)
+				a （编辑/删除）
+				each item in post
+					a #{item.title} /#{item.meta.createAt}
+
+			else
+				each item in post
+					a #{item.title} /#{item.meta.createAt}
+
+
+		br
+		a(href="/post") 写博客->

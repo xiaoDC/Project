@@ -26,5 +26,8 @@ block content
 				tr
 					td #{item.title}
 					td #{item.content}
-					td #{item.user}
+					td
+						a(href="/userMain/#{item.user._id}") #{item.user.username}
 					td #{item.meta.createAt}
+
+	a(href='/post') 写博客

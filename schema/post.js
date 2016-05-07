@@ -5,7 +5,7 @@ var date = new Date()
 var postSchema = new Schema({
     user:{
         type: ObjectId,
-        ref: 'userModel'
+        ref: 'user'
     },
     title:String,
     content:String,

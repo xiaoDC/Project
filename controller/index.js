@@ -1,15 +1,24 @@
 var postModel = require('../model/post')
+var userModel = require('../model/user')
+
 
 exports.index= function(req, res) {
-    postModel.find(function(err,post){
-        console.log(post)
+    userModel.find(function(err,user){
         if(err){
             console.log(err)
         }
-        res.render('index',{
-            post:post
-        });
+        if(user){
+            postModel
+                .find()
+                .populate('user','username')
+                .exec(function(err,post){
+                    res.render('index',{
+                        post:post
+                    })
+                })
+        }
     })
+
 
 
 }

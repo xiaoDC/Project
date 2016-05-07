@@ -34,28 +34,11 @@ exports.showLogin=function(req,res){
 }
 
 exports.login=function(req,res){
-
-    /*   var user = {
-     username:'admin',
-     password:'admin',
-     }
-     console.log(req.body.username);
-     if(req.body.username==user.username&&req.body.password==user.password)
-     {
-     req.session.user = user;
-     res.send(200);
-
-
-     }else{
-     req.session.error = "”√ªß√˚ªÚ√‹¬Î¥ÌŒÛ"
-     res.send(404);
-     }
-     */
     var _user = req.body.user
     var username = _user.username
     var password = _user.password
-    console.log(_user)
-    console.log(username)
+  /*  console.log(_user)
+    console.log(username)*/
     userModel.findOne({"username":username}, function (err, user){
 
         if (err) {
@@ -74,7 +57,7 @@ exports.login=function(req,res){
                     if(req.session.user.role=="admin")
                         res.redirect('/userList')
                     else{
-                        res.redirect('/')
+                        res.redirect('/userMain/'+user._id)
                     }
                 } else {
                     console.log('√‹¬Î¥ÌŒÛ')
@@ -93,7 +76,7 @@ exports.login=function(req,res){
 exports.logout=function(req, res){
     req.session.user = null;
     req.session.error = null;
-    res.redirect(302,'/');
+    res.redirect('/');
 }
 
 //userList
@@ -127,9 +110,19 @@ exports.userMain=function(req,res){
             res.redirect('/')
         }
         else{
-            res.render('userMain',{
-                user:user
-            })
+            postModel
+                .find({user:_id})
+                .populate('user','username')
+                .exec(function(err,post){
+                        var name = user.username
+                        res.render('userMain',{
+                            name:name,
+                            post:post
+                        })
+
+
+                })
+
         }
     })
 }

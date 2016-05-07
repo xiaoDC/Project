@@ -1,6 +1,7 @@
 extends layout
 block content
 	form(method="POST", action="/post")
+		input(type="hidden", name="post[user]", value="#{user._id}")
 		.form-group
 			label(for="post[title]") 标题
 			input#postTitle.form-control(name="post[title]", type="text",placeholder='标题')

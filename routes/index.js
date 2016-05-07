@@ -20,14 +20,14 @@ router.post('/login',User.login)
 //logout
 router.get('/logout',User.loginRequired, User.logout)
 //用户主页
-router.get('/userMain/:id',User.loginRequired,User.userMain)
+router.get('/userMain/:id',User.userMain)
 //userList
 router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
 
 //post
 router.get('/post',User.loginRequired,Post.showPost)
 router.post('/post',User.loginRequired,Post.posts)
-
+router.get('/article/:id/:title/:time',Post.article)
 
 
 
