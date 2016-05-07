@@ -8,24 +8,35 @@ exports.showPost=function(req,res){
 exports.posts=function(req,res){
     var _user = req.session.user
     var _post = req.body.post
-    console.log(_post)
     var post = new postModel(_post)
     post.save(function (err,post) {
         if (err) {
             console.log(err)
         }
-       /* res.redirect('/article/'+_user._id+"/"+post.title+"/"+post.meta.createAt)*/
-        res.redirect('/userMain/'+_user._id)
+        res.redirect('/article/'+_user._id+post._id)
+        /*res.redirect('/userMain/'+_user._id)*/
     })
+
 }
 
-exports.article=function(res,req){
+exports.article=function(req,res){
     var _id = req.params.id
-    var _title = req.params.title
-    var _time = req.params.time
-    res.render("article",{
-        id:_id,
-        title:_title,
-        time:_time
+    var _postId = req.params.postId
+    userModel.findById(_id,function(err,user){
+        if(user){
+            postModel
+                .findOne({_id:_postId})
+                .populate('user','username')
+                .exec(function(err,post){
+                    if(err){
+                        console.log(err)
+                    }
+
+                    res.render('article',{
+                        post:post
+                    })
+                })
+        }
     })
+
 }

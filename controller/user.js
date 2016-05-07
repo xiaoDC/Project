@@ -102,16 +102,18 @@ exports.userList=function(req,res){
 exports.userMain=function(req,res){
     var _id = req.params.id
     userModel.findById(_id,function(err,user){
+
         if(err){
             console.log(err)
         }
         if(!user){
             req.flash('error',err)
-            res.redirect('/')
+            res.redirect('/signup')
         }
         else{
             postModel
                 .find({user:_id})
+                .sort({"meta.updateAt":-1})
                 .populate('user','username')
                 .exec(function(err,post){
                         var name = user.username

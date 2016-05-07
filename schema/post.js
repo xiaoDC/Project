@@ -12,11 +12,11 @@ var postSchema = new Schema({
     meta:{
         createAt: {
             type: String,
-            default: date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
+            default: date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
         },
         updateAt: {
             type: String,
-            default:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
+            default:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
         }
     }
 
@@ -25,20 +25,15 @@ var postSchema = new Schema({
 
 postSchema.pre('save', function(next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
+        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
     } else {
-        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
+        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
     }
     next()
 })
 //静态方法：fetch查找所有的用户，findById通过id查找用户,通过模型就可以调用
 postSchema.statics = {
-    fetch: function(cb) {
-        return this
-            .find({})
-            .sort('meta.updateAt')
-            .exec(cb)
-    },
+
     findById: function(id, cb) {
         return this.findOne({
             _id: id
