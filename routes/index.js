@@ -27,7 +27,7 @@ router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
 //post
 router.get('/post',User.loginRequired,Post.showPost)
 router.post('/post',User.loginRequired,Post.posts)
-router.get('/article/:id/:title/:time',Post.article)
+router.get('/article/:id/:postId',Post.article)
 
 
 

@@ -1,17 +1,31 @@
 extends layout
 block content
-	.container.contentTop
-		.row
-			h1 #{name}
-			if(user.username === name)
-				a （编辑/删除）
-				each item in post
-					a #{item.title} /#{item.meta.createAt}
+	#content.clearfix
+		.block_body#user_show
+			#d_border #{name}
+		.all_block.block_has
+			.block_head 全部文章
+			.block_body
+				if(user && user.username === name)
 
-			else
-				each item in post
-					a #{item.title} /#{item.meta.createAt}
+					each item in post
+						table.full_line
+							tr
+								th #{item.title}
+								td #{item.meta.createAt}
+								td
+									a 编辑
+								td
+									a 删除
+
+				else
+					each item in post
+						table.full_line
+							tr
+								th #{item.title}
+								td #{item.meta.createAt}
 
 
-		br
-		a(href="/post") 写博客->
+
+	br
+	a(href="/post") 写博客->

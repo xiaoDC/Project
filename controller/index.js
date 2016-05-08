@@ -10,6 +10,7 @@ exports.index= function(req, res) {
         if(user){
             postModel
                 .find()
+                .sort({"meta.updateAt":-1})
                 .populate('user','username')
                 .exec(function(err,post){
                     res.render('index',{

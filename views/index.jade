@@ -13,21 +13,42 @@ block content
 					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" value="" autocomplete="off")
 					input(type="submit" value="搜  索" class="ts_btn")
 
-
-	table.table.table-bordered.table-hover
-		thead
-			tr
-				th 标题
-				th 正文
-				th 作者
-				th 日期
-		tbody
+	#content.clearfix
+		#leftContent
 			each item in post
-				tr
-					td #{item.title}
-					td #{item.content}
-					td
-						a(href="/userMain/#{item.user._id}") #{item.user.username}
-					td #{item.meta.createAt}
+				.index_list
+					.index_title
+						a(href="/article/#{item.user._id}/#{item._id}")  #{item.title}
+					.index_content #{item.content}
+					p [ #{item.user.username} ] 发布与 #{item.meta.createAt}
+						span(class=" glyphicon glyphicon-edit") 评论()
+						span(class=" glyphicon glyphicon-list-alt") 阅读()
+
+
+		#rightContent 
+			#ad_content
+				ul#ad_ul
+					li 凤凰台上凤凰游
+					li 凤去台空江自流
+					li 吴宫花草埋幽径
+					li 晋代衣冠成古丘
+					li 三山半落青天外
+					li 二水中分白鹭洲
+					li 总为浮云能蔽日
+					li 长安不见使人愁
+					li 凤凰台上凤凰游
+					li 凤去台空江自流
+					li 吴宫花草埋幽径
+					li 晋代衣冠成古丘
+					li 三山半落青天外
+					li 二水中分白鹭洲
+					li 总为浮云能蔽日
+					li 长安不见使人愁
+				ul#ad_ul1
+
+            
+			.block_body.block_has 123
+					
 
 	a(href='/post') 写博客
+

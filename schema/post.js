@@ -27,7 +27,7 @@ postSchema.pre('save', function(next) {
     if (this.isNew) {
         this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
     } else {
-        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
+        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
     }
     next()
 })
