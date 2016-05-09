@@ -18,7 +18,7 @@ router.get('/signup',User.showSignup)
 router.get('/login',User.showLogin)
 router.post('/login',User.login)
 //logout
-router.get('/logout',User.loginRequired, User.logout)
+router.get('/logout',User.logout)
 //用户主页
 router.get('/userMain/:id',User.userMain)
 //userList

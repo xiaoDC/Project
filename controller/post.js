@@ -2,7 +2,9 @@ var postModel = require('../model/post')
 var userModel = require('../model/user')
 
 exports.showPost=function(req,res){
-    res.render('post')
+    res.render('post',{
+        title:"编辑页"
+    })
 }
 
 exports.posts=function(req,res){
@@ -24,18 +26,24 @@ exports.article=function(req,res){
     var _postId = req.params.postId
     userModel.findById(_id,function(err,user){
         if(user){
-            postModel
-                .findOne({_id:_postId})
-                .populate('user','username')
-                .exec(function(err,post){
-                    if(err){
-                        console.log(err)
-                    }
+            postModel.find({user:_id},function(err,info){
 
-                    res.render('article',{
-                        post:post
+                postModel
+                    .findOne({_id:_postId})
+                    .populate('user','username')
+                    .exec(function(err,post){
+                        if(err){
+                            console.log(err)
+                        }
+
+                        res.render('article',{
+                            title:"文章页",
+                            info:info,
+                            post:post
+                        })
                     })
-                })
+            })
+
         }
     })
 

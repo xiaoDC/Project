@@ -10,7 +10,7 @@ exports.signup=function(req,res){
             console.log(err)
         }
         if (user.length) {
-            console.log('ÓÃ»§ÒÑ´æÔÚ')
+            console.log('ç”¨æˆ·å·²å­˜åœ¨')
             res.redirect('/')
         }else {
             var user = new userModel(_user)
@@ -25,20 +25,24 @@ exports.signup=function(req,res){
 
 }
 exports.showSignup=function(req,res){
-    res.render('signup');
+    res.render('signup',{
+        title:"æ³¨å†Œé¡µ"
+    });
 }
 
 //login
 exports.showLogin=function(req,res){
-    res.render('login');
+    res.render('login',{
+        title:"ç™»é™†é¡µ"
+    });
 }
 
 exports.login=function(req,res){
     var _user = req.body.user
     var username = _user.username
     var password = _user.password
-  /*  console.log(_user)
-    console.log(username)*/
+    /*  console.log(_user)
+     console.log(username)*/
     userModel.findOne({"username":username}, function (err, user){
 
         if (err) {
@@ -53,14 +57,14 @@ exports.login=function(req,res){
                 if (isMatch) {
                     req.session.user = user
 
-                    console.log('ÃÜÂëÕıÈ·')
+                    console.log('å¯†ç æ­£ç¡®')
                     if(req.session.user.role=="admin")
                         res.redirect('/userList')
                     else{
                         res.redirect('/userMain/'+user._id)
                     }
                 } else {
-                    console.log('ÃÜÂë´íÎó')
+                    console.log('å¯†ç é”™è¯¯')
 
                     res.redirect('/login')
                 }
@@ -89,10 +93,11 @@ exports.userList=function(req,res){
         if(_user && _user.role=='admin'){
 
             res.render('userList',{
+                title:"ä¿¡æ¯é¡µ",
                 users:users,
             });
         }else{
-            req.session.error = "ÇëÏÈµÇÂ¼";
+            req.session.error = "è¯·å…ˆç™»å½•";
             res.redirect('login');
         }
     })
@@ -116,11 +121,12 @@ exports.userMain=function(req,res){
                 .sort({"meta.updateAt":-1})
                 .populate('user','username')
                 .exec(function(err,post){
-                        var name = user.username
-                        res.render('userMain',{
-                            name:name,
-                            post:post
-                        })
+                    var name = user.username
+                    res.render('userMain',{
+                        title:"ç”¨æˆ·é¡µ",
+                        name:name,
+                        post:post
+                    })
 
 
                 })

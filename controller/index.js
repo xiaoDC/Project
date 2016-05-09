@@ -14,6 +14,7 @@ exports.index= function(req, res) {
                 .populate('user','username')
                 .exec(function(err,post){
                     res.render('index',{
+                        title:'首页',
                         post:post
                     })
                 })
