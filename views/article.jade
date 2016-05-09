@@ -14,16 +14,44 @@ block content
 			.all_block.block_has
 				.block_head 全部文章
 				.block_body
-					ol
-						li 美好的一天
-						li forever and always
-		#right_content
-			#a_title  #{post.title}
-			ul.list_inline#a_detail
-				li #{post.meta.createAt}
-				li 评论()
-				li 访问量()
-			p 版权声明 ：未经博主允许不得转载。
-			#a_content    #{post.content}
+					ul
+						each item in info
+							li
+								a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
 
+		#right_content
+			.block_body
+				#a_title  #{post.title}
+				ul.list_inline#a_detail
+					li #{post.meta.createAt}
+					li 评论()
+					li 访问量()
+				p 版权声明 ：未经博主允许不得转载。
+				#a_content    #{post.content}
+
+			.block_body.block_has
+				.comment_head	查看评论
+				.comment_body	暂无评论
+				.comment_head	发表评论
+				if user
+					.comment_submit
+						form
+							table
+								tr
+									th	label 用户名：
+									td	#{user.username}
+								tr
+									th	评论内容：
+									td
+								tr
+									th
+									td
+										textarea(row='3',placeholder="正文")
+								tr
+									th
+									td
+										button.btn.btn-primary(type="submit") 提交
+
+				else
+					a 请先登录
 

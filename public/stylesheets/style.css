@@ -199,11 +199,12 @@ outline: none;
     height: auto;
     border-top: 5px solid #123555;
     margin-left: 245px;
-    background-color: white;
+
 }
 
 .all_block{
     margin-bottom:10px;
+
 }
 .block_has{
     margin-top:10px;
@@ -216,6 +217,7 @@ outline: none;
 }
 .block_body{
     background-color: white;
+    border: 1px solid #CCCCCC;
 }
 
 
@@ -269,6 +271,7 @@ outline: none;
     height: 50px;
 
 }
+
 .block_body td{
     text-align:left;
     min-width:65px;
@@ -310,8 +313,6 @@ outline: none;
     height: 50px;
     overflow:hidden;
     text-overflow:ellipsis;
-    
-
 }
 
 .index_list p span{
@@ -337,4 +338,40 @@ outline: none;
 }
 .even li:nth-child(2n){
     background-color: #F4E0A4;
+}
+/*------评论区-------------------*/
+.comment_head{
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #F5F5F5;
+}
+.comment_body{
+    text-indent:2em;
+    margin: 10px 0;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 1px dashed #cccccc;
+}
+
+.comment_submit{
+    padding: 15px;
+}
+.comment_submit td,th{
+     width: 330px !important;
+    padding: 5px;
+}
+.comment_submit table{border:none !important;}
+.comment_submit th{text-align: right;}
+.comment_submit td{text-align: left;}
+.comment_submit textarea{
+    width: 330px;
+    height: 100px;
+}
+
+.block_body li{
+    padding:5px;
+}
+.block_body li:hover{
+    padding:5px;
+    background-color: #F5F5F5;
 }
