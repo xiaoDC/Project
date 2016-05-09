@@ -76,7 +76,7 @@ ul li{
 .header_mid{
     padding: 10px;
     width: 1200px;
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 /*.foot*/
@@ -176,13 +176,16 @@ outline: none;
 }
 
 
-/*--------------------article.jade*/
+/*-----------------*/
+
 #content{
     width: 1200px;
     margin: 30px auto;
     border-top: 3px solid #123555;
     padding-top: 10px;
 }
+
+/*--------------------article.jade*/
 #left_content{
 
     width: 230px;
@@ -196,7 +199,7 @@ outline: none;
     height: auto;
     border-top: 5px solid #123555;
     margin-left: 245px;
-    
+    background-color: white;
 }
 
 .all_block{
@@ -262,12 +265,12 @@ outline: none;
 
 .block_body th{
     padding-left: 100px;
-    min-width: 450px;
+    width: 900px;
     height: 50px;
 
 }
 .block_body td{
-    text-align:center;
+    text-align:left;
     min-width:65px;
 }
 
@@ -281,11 +284,12 @@ outline: none;
 
 }
 #rightContent{
+    padding-top:5px ;
     width: 230px;
     height: auto;
-    border-top: 7px solid #123555;
+    border-top: 5px solid #123555;
     margin-left: 970px;
-    background-color:white;
+   
 }
 
 .index_list{
@@ -306,7 +310,7 @@ outline: none;
     height: 50px;
     overflow:hidden;
     text-overflow:ellipsis;
-    text-overflow:ellipsis;
+    
 
 }
 
@@ -316,8 +320,9 @@ outline: none;
 
 /* -----------滚动 */
 #ad_content{
-    height: 300px;
+    height: 408px;
     overflow: hidden;
+    
 }
 #ad_content li{
     text-align: center;

@@ -13,6 +13,7 @@ block content
 					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" value="" autocomplete="off")
 					input(type="submit" value="搜  索" class="ts_btn")
 
+
 	#content.clearfix
 		#leftContent
 			each item in post
@@ -25,7 +26,9 @@ block content
 						span(class=" glyphicon glyphicon-list-alt") 阅读()
 
 
-		#rightContent 
+		#rightContent
+			a(href="/post")
+				.btn.btn-warning.full_line 写新文章
 			#ad_content
 				ul#ad_ul
 					li 凤凰台上凤凰游
@@ -46,8 +49,12 @@ block content
 					li 长安不见使人愁
 				ul#ad_ul1
 
-            
-			.block_body.block_has 123
+
+			.block_body.block_has
+				img(src="/images/2.png")
+			.block_body.block_has
+				img(src="/images/1.png")
+
 					
 
 	a(href='/post') 写博客

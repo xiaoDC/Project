@@ -7,20 +7,23 @@ block content
 				.block_body#user_show #{post.user.username}
 
 			a(href="/userMain/#{post.user._id}")
-				.btn.btn-warning.full_line 主页
+				.btn.btn-primary.full_line 主页
 			a(href="/post")
-				.btn.btn-primary.full_line 写新文章
+				.btn.btn-warning.full_line 写新文章
 
 			.all_block.block_has
 				.block_head 全部文章
 				.block_body
+					ol
+						li 美好的一天
+						li forever and always
 		#right_content
 			#a_title  #{post.title}
 			ul.list_inline#a_detail
 				li #{post.meta.createAt}
 				li 评论()
 				li 访问量()
-			p 版权声明:未经博主允许不得转载。
+			p 版权声明 ：未经博主允许不得转载。
 			#a_content    #{post.content}
 
 
