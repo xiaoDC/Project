@@ -35,15 +35,17 @@ block content
 					.comment_body
 						if item.from
 							h5  #{item.from.username} :
+							h6 #{item.meta.createAt}
 							a.callback(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}") 回复
 							.contentC #{item.content}
 						else
 							a.callback(href="#comments", data-cid="#{item._id}") 回复
-							
+
 						if item.reply && item.reply.length > 0
 							each reply in item.reply
 								a.callback(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复
 								h5 #{reply.from.username} &nbsp;回复&nbsp;#{reply.to.username} :
+								h6 #{item.meta.createAt}
 								.contentC #{reply.content}
 
 				.comment_head	发表评论
