@@ -1,6 +1,6 @@
 var postModel = require('../model/post')
 var userModel = require('../model/user')
-
+var Comment = require('../model/comment')
 exports.showPost=function(req,res){
     res.render('post',{
         title:"编辑页"
@@ -15,7 +15,7 @@ exports.posts=function(req,res){
         if (err) {
             console.log(err)
         }
-        res.redirect('/article/'+_user._id+post._id)
+        res.redirect('/article/'+_user._id+'/'+post._id)
         /*res.redirect('/userMain/'+_user._id)*/
     })
 
@@ -26,7 +26,7 @@ exports.article=function(req,res){
     var _postId = req.params.postId
     userModel.findById(_id,function(err,user){
         if(user){
-            postModel.find({user:_id},function(err,info){
+            postModel.find({user:_id}).populate('user','username').exec(function(err,info){
 
                 postModel
                     .findOne({_id:_postId})
@@ -36,11 +36,19 @@ exports.article=function(req,res){
                             console.log(err)
                         }
 
-                        res.render('article',{
-                            title:"文章页",
-                            info:info,
-                            post:post
-                        })
+                        Comment.find({post: _postId})
+                            .populate('from', 'username')
+                            .populate('reply.from reply.to', 'username')
+                            .exec(function(err,comments){
+                                res.render('article',{
+                                    title:"文章页",
+                                    info:info,
+                                    comments:comments,
+                                    post:post
+                                })
+                            })
+
+
                     })
             })
 

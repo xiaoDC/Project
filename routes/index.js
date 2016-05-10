@@ -5,6 +5,7 @@ var router = express.Router();
 var Index = require('../controller/index')
 var User = require('../controller/user')
 var Post = require('../controller/post')
+var Comment= require('../controller/comment')
 
 
 
@@ -29,6 +30,8 @@ router.get('/post',User.loginRequired,Post.showPost)
 router.post('/post',User.loginRequired,Post.posts)
 router.get('/article/:id/:postId',Post.article)
 
+//comment
+router.post('/user/comment', User.loginRequired, Comment.save)
 
 
 module.exports = router;

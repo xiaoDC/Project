@@ -15,9 +15,9 @@ block content
 				.block_head 全部文章
 				.block_body
 					ul
-						each item in info
+						each items in info
 							li
-								a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
+								a(href="/article/#{items.user._id}/#{items._id}") #{items.title}
 
 		#right_content
 			.block_body
@@ -31,14 +31,33 @@ block content
 
 			.block_body.block_has
 				.comment_head	查看评论
-				.comment_body	暂无评论
+				each item in comments
+					.comment_body
+						if item.from
+							h5  #{item.from.username} :
+							a.callback(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}") 回复
+							.contentC #{item.content}
+						else
+							a.callback(href="#comments", data-cid="#{item._id}") 回复
+							
+						if item.reply && item.reply.length > 0
+							each reply in item.reply
+								a.callback(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复
+								h5 #{reply.from.username} &nbsp;回复&nbsp;#{reply.to.username} :
+								.contentC #{reply.content}
+
 				.comment_head	发表评论
 				if user
 					.comment_submit
-						form
+						#comments
+						form(method="POST", action="/user/comment")
+							input(type="hidden", name="comment[post]", value="#{post._id}")
+							input(type="hidden", name="comment[to]", value="#{post.user._id}")
+							if user
+								input(type="hidden", name="comment[from]", value="#{user._id}")
 							table
 								tr
-									th	label 用户名：
+									th	用户名：
 									td	#{user.username}
 								tr
 									th	评论内容：
@@ -46,7 +65,7 @@ block content
 								tr
 									th
 									td
-										textarea(row='3',placeholder="正文")
+										textarea(name="comment[content]",row='4',placeholder="正文")
 								tr
 									th
 									td
