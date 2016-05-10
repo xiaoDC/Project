@@ -266,6 +266,8 @@ outline: none;
 }
 
 .block_body th{
+    font-weight: 300;
+    font-size: 25px;
     padding-left: 100px;
     width: 900px;
     height: 50px;
@@ -348,8 +350,8 @@ outline: none;
 .comment_body{
     text-indent:2em;
     margin: 10px 0;
-    height: 80px;
-    line-height: 80px;
+    height: auto;
+    padding-bottom: 10px;
     border-bottom: 1px dashed #cccccc;
 }
 
@@ -357,6 +359,8 @@ outline: none;
     padding: 15px;
 }
 .comment_submit td,th{
+    font-weight: 400 !important;
+    font-size: 15px !important;
      width: 330px !important;
     padding: 5px;
 }
@@ -374,4 +378,13 @@ outline: none;
 .block_body li:hover{
     padding:5px;
     background-color: #F5F5F5;
+}
+
+/*-----------------评论----------------------*/
+.callback{
+    display: inline-block;
+    margin-left: 30px;
+}
+.contentC{
+   margin-top: 20px;
 }

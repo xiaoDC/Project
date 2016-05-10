@@ -11,7 +11,8 @@ block content
 					each item in post
 						table.full_line
 							tr
-								th #{item.title}
+								th
+									a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
 								td #{item.meta.createAt}
 								td
 									a 编辑
@@ -22,7 +23,8 @@ block content
 					each item in post
 						table.full_line
 							tr
-								th #{item.title}
+								th
+									a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
 								td #{item.meta.createAt}
 
 

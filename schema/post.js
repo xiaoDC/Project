@@ -12,11 +12,11 @@ var postSchema = new Schema({
     meta:{
         createAt: {
             type: String,
-            default: date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
+            default: date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
         },
         updateAt: {
             type: String,
-            default:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
+            default:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+'  '+date.getHours()+':'+date.getMinutes()
         }
     }
 
@@ -25,9 +25,9 @@ var postSchema = new Schema({
 
 postSchema.pre('save', function(next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
+        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
     } else {
-        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()+":"+date.getSeconds()
+        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
     }
     next()
 })

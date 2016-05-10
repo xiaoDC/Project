@@ -39,17 +39,12 @@ userSchema.methods = {
     }
 }
 
-//静态方法：fetch查找所有的用户，findById通过id查找用户,通过模型就可以调用
+//静态方法
 userSchema.statics = {
 
     findById: function(id, cb) {
         return this.findOne({
             _id: id
-        }).exec(cb)
-    },
-    findByName: function (_name, cb) {
-        return this.findOne({
-            username: _name
         }).exec(cb)
     }
 }
