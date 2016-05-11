@@ -36,14 +36,14 @@ block content
 						if item.from
 							h5  #{item.from.username} :
 							h6 #{item.meta.createAt}
-							a.callback(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}") 回复
+							a.callback.headP(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}") 回复
 							.contentC #{item.content}
 						else
-							a.callback(href="#comments", data-cid="#{item._id}") 回复
+							a.callback.headP(href="#comments", data-cid="#{item._id}") 回复
 
 						if item.reply && item.reply.length > 0
 							each reply in item.reply
-								a.callback(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复
+								a.callback.headP(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复
 								h5 #{reply.from.username} &nbsp;回复&nbsp;#{reply.to.username} :
 								h6 #{item.meta.createAt}
 								.contentC #{reply.content}
@@ -52,7 +52,7 @@ block content
 				if user
 					.comment_submit
 						#comments
-						form(method="POST", action="/user/comment")
+						form#commentForm(method="POST", action="/user/comment")
 							input(type="hidden", name="comment[post]", value="#{post._id}")
 							input(type="hidden", name="comment[to]", value="#{post.user._id}")
 							if user
@@ -67,7 +67,7 @@ block content
 								tr
 									th
 									td
-										textarea(name="comment[content]",row='4',placeholder="正文")
+										textarea#textareaId(name="comment[content]",row='4',placeholder="正文")
 								tr
 									th
 									td
@@ -76,3 +76,4 @@ block content
 				else
 					a 请先登录
 
+	script(src="/javascripts/detail.js")
