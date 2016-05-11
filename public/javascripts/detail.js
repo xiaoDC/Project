@@ -1,4 +1,5 @@
 $(function(){
+
     $('.headP').click(function (e){
         var target = $(this)
         var commentId = target.data('cid')
@@ -31,4 +32,7 @@ $(function(){
             }).appendTo('#commentForm')
         }
     })
+
+
+
 })

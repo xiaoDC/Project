@@ -22,8 +22,8 @@ block content
 						a(href="/article/#{item.user._id}/#{item._id}")  #{item.title}
 					.index_content #{item.content}
 					p [ #{item.user.username} ] 发布与 #{item.meta.createAt}
-						span(class=" glyphicon glyphicon-edit") 评论()
-						span(class=" glyphicon glyphicon-list-alt") 阅读()
+						span(class=" glyphicon glyphicon-edit") 评论(#{item.commentL})
+						span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
 
 
 		#rightContent

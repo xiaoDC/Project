@@ -24,13 +24,15 @@ block content
 				#a_title  #{post.title}
 				ul.list_inline#a_detail
 					li #{post.meta.createAt}
-					li 评论()
-					li 访问量()
+					li
+						span(class=" glyphicon glyphicon-edit") 评论(#{post.commentL})
+					li
+						span(class=" glyphicon glyphicon-list-alt") 阅读(#{post.pv})
 				p 版权声明 ：未经博主允许不得转载。
 				#a_content    #{post.content}
 
 			.block_body.block_has
-				.comment_head	查看评论
+				.comment_head 查看评论
 				each item in comments
 					.comment_body
 						if item.from
@@ -43,15 +45,16 @@ block content
 
 						if item.reply && item.reply.length > 0
 							each reply in item.reply
-								a.callback.headP(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复
+								a.callback.headP(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复11
 								h5 #{reply.from.username} &nbsp;回复&nbsp;#{reply.to.username} :
 								h6 #{item.meta.createAt}
 								.contentC #{reply.content}
 
-				.comment_head	发表评论
+				.comment_head 发表评论
+					#comments
 				if user
 					.comment_submit
-						#comments
+
 						form#commentForm(method="POST", action="/user/comment")
 							input(type="hidden", name="comment[post]", value="#{post._id}")
 							input(type="hidden", name="comment[to]", value="#{post.user._id}")
@@ -59,10 +62,10 @@ block content
 								input(type="hidden", name="comment[from]", value="#{user._id}")
 							table
 								tr
-									th	用户名：
-									td	#{user.username}
+									th 用户名：
+									td #{user.username}
 								tr
-									th	评论内容：
+									th 评论内容：
 									td
 								tr
 									th

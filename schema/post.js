@@ -9,6 +9,14 @@ var postSchema = new Schema({
     },
     title:String,
     content:String,
+    pv:{
+        type:Number,
+        default:0
+    },
+    commentL:{
+        type:Number,
+        default:0
+    },
     meta:{
         createAt: {
             type: String,

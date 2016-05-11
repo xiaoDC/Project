@@ -13,6 +13,8 @@ block content
 							tr
 								th
 									a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
+								td
+									span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
 								td #{item.meta.createAt}
 								td
 									a 编辑
@@ -25,6 +27,10 @@ block content
 							tr
 								th
 									a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
+								td
+									span(class=" glyphicon glyphicon-edit") 评论(#{item.commentL})
+								td
+									span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
 								td #{item.meta.createAt}
 
 

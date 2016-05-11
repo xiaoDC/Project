@@ -26,6 +26,11 @@ exports.article=function(req,res){
     var _postId = req.params.postId
     userModel.findById(_id,function(err,user){
         if(user){
+            postModel.update({_id: _postId}, {$inc: {pv: 1}}, function (err) {
+                if(err) {
+                    console.log(err)
+                }
+            })
             postModel.find({user:_id}).populate('user','username').exec(function(err,info){
 
                 postModel
@@ -40,14 +45,33 @@ exports.article=function(req,res){
                             .populate('from', 'username')
                             .populate('reply.from reply.to', 'username')
                             .exec(function(err,comments){
+                                var replyc=0;
+                            comments.forEach(function(c){
+                                replyc+= c.reply.length;
+                                var allc=comments.length+replyc
+                                console.log(allc)
+                                console.log(post.commentL)
+                                if(post.commentL!=allc){
+                                    console.log("不等")
+                                    postModel.update({_id: _postId}, {$set:{ commentL:allc}}, function (err){
+                                        if(err) {
+                                        console.log(err)
+                                        }
+                                     })
+
+                                }
+
+                            })
                                 res.render('article',{
                                     title:"文章页",
                                     info:info,
                                     comments:comments,
                                     post:post
-                                })
-                            })
 
+                                })
+
+
+                            })
 
                     })
             })
