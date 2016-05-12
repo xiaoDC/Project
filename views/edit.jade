@@ -1,0 +1,12 @@
+extends layout
+block content
+	form(method="POST", action="/update")
+		input(type="hidden", name="post[id]", value="#{post._id}")
+		.form-group
+			label(for="post[title]") 标题
+			textarea#postTitle.form-control(name="post[title]") #{post.title}
+		.form-group
+			label(for="post[content]") 正文
+			textarea#postContent.form-control(name="post[content]", row='3') #{post.content}
+		.text-center
+			button.btn.btn-primary(type="submit") 提交

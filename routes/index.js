@@ -29,6 +29,9 @@ router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
 router.get('/post',User.loginRequired,Post.showPost)
 router.post('/post',User.loginRequired,Post.posts)
 router.get('/article/:id/:postId',Post.article)
+router.get('/edit/:postId',User.loginRequired,Post.edit)
+router.get('/update',User.loginRequired,Post.update)
+router.get('/delete/:postId',User.loginRequired,Post.delete)
 
 //comment
 router.post('/user/comment', User.loginRequired, Comment.save)

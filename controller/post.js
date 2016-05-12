@@ -21,6 +21,53 @@ exports.posts=function(req,res){
 
 }
 
+
+exports.edit=function(req,res){
+   var _postId =req.params.postId
+
+      postModel.findOne({_id:_postId},function(err,post){
+        if(err){
+            console.log(err)
+        }
+
+        res.render('edit',{
+            title:"修改编辑页",
+            post:post
+        })
+    })
+}
+
+exports.update=function(req,res){
+    var _user = req.session.user
+    var _post = req.body.post
+    console.log(_user)
+   console.log(_post)
+    postModel.update({_id:_post.id},{$set:{title:_post.title,content:_post.content}},function(err,post){
+        if(err){
+            console.log(err)
+        }
+
+        res.redirect('/article/'+_user._id+'/'+post.id)
+    })
+}
+
+
+exports.delete=function(req,res){
+    var _user = req.session.user
+    var _postId =req.params.postId
+    postModel.remove({_id:_postId},function(err){
+        if(err){
+            console.log(err)
+        }
+
+        res.redirect('/userMain/'+_user._id)
+    })
+
+}
+
+
+
+
 exports.article=function(req,res){
     var _id = req.params.id
     var _postId = req.params.postId
@@ -49,10 +96,10 @@ exports.article=function(req,res){
                             comments.forEach(function(c){
                                 replyc+= c.reply.length;
                                 var allc=comments.length+replyc
-                                console.log(allc)
-                                console.log(post.commentL)
+                               /* console.log(allc)
+                                console.log(post.commentL)*/
                                 if(post.commentL!=allc){
-                                    console.log("不等")
+                                    /*console.log("不等")*/
                                     postModel.update({_id: _postId}, {$set:{ commentL:allc}}, function (err){
                                         if(err) {
                                         console.log(err)
@@ -80,3 +127,7 @@ exports.article=function(req,res){
     })
 
 }
+
+
+
+

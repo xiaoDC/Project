@@ -16,8 +16,8 @@ exports.save = function (req, res){
             }
             comment.reply.push(newReply)
             comment.save(function (err, comment) {
-                console.log('reply')
-                console.log(comment)
+                /*console.log('reply')
+                console.log(comment)*/
                 if (err) {
                     console.log(err)
                 }

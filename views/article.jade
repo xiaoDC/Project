@@ -28,6 +28,12 @@ block content
 						span(class=" glyphicon glyphicon-edit") 评论(#{post.commentL})
 					li
 						span(class=" glyphicon glyphicon-list-alt") 阅读(#{post.pv})
+					if user
+						li
+							a(href="/edit/#{post._id}") 编辑
+						li
+							a(href="/delete/#{post._id}") 删除
+
 				p 版权声明 ：未经博主允许不得转载。
 				#a_content    #{post.content}
 

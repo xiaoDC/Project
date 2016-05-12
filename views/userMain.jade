@@ -14,12 +14,14 @@ block content
 								th
 									a(href="/article/#{item.user._id}/#{item._id}") #{item.title}
 								td
+									span(class=" glyphicon glyphicon-edit") 评论(#{item.commentL})
+								td
 									span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
 								td #{item.meta.createAt}
 								td
-									a 编辑
+									a(href="/edit/#{item._id}") 编辑
 								td
-									a 删除
+									a(href="/delete/#{item._id}") 删除
 
 				else
 					each item in post
