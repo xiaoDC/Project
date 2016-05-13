@@ -12,6 +12,10 @@ var userSchema = new Schema ({
     role:{
         type:String,
         default:'user'
+    },
+    photo:{
+        type:String,
+        default:"default.jpg"
     }
 
 });

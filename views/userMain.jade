@@ -1,8 +1,22 @@
 extends layout
 block content
 	#content.clearfix
-		.block_body#user_show
-			#d_border #{name}
+		.block_body#block_padding
+			table.noborder
+				tr
+					td
+						img(src="/images/#{photo}", alt="#{name}", width="135px" height="135px")
+
+					td
+						#user_show #{name}
+			if(user && user.username === name)
+				form(method="POST",enctype="multipart/form-data", action="/uploadPhoto")
+					label(for="uploadPhoto") 上传头像 :
+					input#uploadPhoto(type="file", name="uploadPhoto")
+					button.btn.btn-info.btn-xs.block_has(type="submit") 确认上传
+
+
+
 		.all_block.block_has
 			.block_head 全部文章
 			.block_body

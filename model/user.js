@@ -8,13 +8,15 @@ userModel.find(function(err,user){
     new userModel({
         username:"blue",
         password:"123",
-        role:'user'
+        role:'user',
+        photo:"default.jpg"
     }).save();
 
     new userModel({
         username:"admin",
         password:"123",
-        role:'admin'
+        role:'admin',
+        photo:"admin.jpeg"
 
     }).save();
 

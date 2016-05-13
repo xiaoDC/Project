@@ -24,6 +24,8 @@ router.get('/logout',User.logout)
 router.get('/userMain/:id',User.userMain)
 //userList
 router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
+//头像上传
+router.post('/uploadPhoto',User.loginRequired,User.savePhoto)
 
 //post
 router.get('/post',User.loginRequired,Post.showPost)
@@ -36,5 +38,10 @@ router.get('/delete/:postId',User.loginRequired,Post.delete)
 //comment
 router.post('/user/comment', User.loginRequired, Comment.save)
 
+
+//测试页面
+router.get('/test',function(req,res){
+    res.render('test')
+})
 
 module.exports = router;

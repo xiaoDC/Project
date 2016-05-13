@@ -28,3 +28,4 @@ exports.index= function(req, res) {
 exports.error=function(req,res){
     res.render('error');
 }
+

@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var connect = require('connect');
 var mongoStore = require('connect-mongo')(session);
-var multer = require('multer'); //处理上传的中间件
+var multipart = require('connect-multiparty');
 var flash = require('connect-flash')
+
+var fs = require('fs')
 
 var mongoose = require('mongoose');
 var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
@@ -34,9 +36,9 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer());
 app.use(flash());
 app.use(cookieParser());
+app.use(multipart())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('bower_components'));
 app.use(session({
@@ -51,7 +53,6 @@ app.use(session({
         maxAge:1000*60*30  //过期时间设置(单位毫秒)
     }
 }));
-
 
 app.use(function (req, res, next) {
     var _user = req.session.user

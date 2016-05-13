@@ -1,5 +1,8 @@
 var userModel = require('../model/user')
 var postModel = require('../model/post')
+var fs = require('fs')
+var path = require('path')
+
 
 //signup
 exports.signup=function(req,res){
@@ -122,10 +125,12 @@ exports.userMain=function(req,res){
                 .populate('user','username')
                 .exec(function(err,post){
                     var name = user.username
+                    var photo = user.photo
                     res.render('userMain',{
                         title:"用户页",
                         name:name,
-                        post:post
+                        post:post,
+                        photo:photo
                     })
 
 
@@ -133,6 +138,65 @@ exports.userMain=function(req,res){
 
         }
     })
+}
+
+
+exports.savePhoto=function(req, res, next){
+    console.log("hello")
+    var _user = req.session.user
+    var photoData = req.files.uploadPhoto
+    var filePath = photoData.path
+    var originalFilename = photoData.originalFilename
+
+
+    console.log(photoData)
+    console.log(filePath)
+    console.log(originalFilename)
+
+    if (originalFilename) {
+        fs.readFile(filePath, function (err, data) {
+            var timestamp = Date.now()
+            var type = photoData.type.split('/')[1]
+            var photo = timestamp + '.' + type
+            var newPath = path.join(__dirname, '../', 'public/images/' + photo)
+
+            console.log(photo)
+            fs.writeFile(newPath, data, function (err) {
+                if(err){
+                    console.log(err)
+                }
+                /*req.photo = photo*/
+                userModel.update({_id:_user._id},{$set:{photo:photo}},function(err){
+                    if(err){
+                        console.log(err)
+                    }
+
+                    res.redirect('/userMain/'+_user._id)
+                })
+            })
+
+        })
+
+    } else {
+        next()
+    }
+}
+
+exports.updateP = function(req,res){
+    console.log('hah')
+    console.log(req.photo)
+    var _user = req.session.user
+    if(req.photo){
+        userModel.update({_id:_user._id},{$set:{photo:photo}},function(err){
+            if(err){
+                console.log(err)
+            }
+            res.redirect('/userMain/'+_user._id)
+        })
+    }
+    else{
+        res.redirect('/')
+    }
 }
 
 exports.loginRequired = function (req, res, next) {
