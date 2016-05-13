@@ -39,6 +39,7 @@ postSchema.pre('save', function(next) {
     }
     next()
 })
+
 //静态方法：fetch查找所有的用户，findById通过id查找用户,通过模型就可以调用
 postSchema.statics = {
 

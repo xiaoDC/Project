@@ -42,12 +42,12 @@ exports.update=function(req,res){
     var _post = req.body.post
     console.log(_user)
    console.log(_post)
-    postModel.update({_id:_post.id},{$set:{title:_post.title,content:_post.content}},function(err,post){
+    postModel.update({_id:_post.id},{$set:{title:_post.title,content:_post.content}},function(err){
         if(err){
             console.log(err)
         }
 
-        res.redirect('/article/'+_user._id+'/'+post.id)
+        res.redirect('/article/'+_user._id+'/'+_post.id)
     })
 }
 
@@ -55,6 +55,7 @@ exports.update=function(req,res){
 exports.delete=function(req,res){
     var _user = req.session.user
     var _postId =req.params.postId
+
     postModel.remove({_id:_postId},function(err){
         if(err){
             console.log(err)
