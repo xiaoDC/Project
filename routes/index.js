@@ -6,6 +6,7 @@ var Index = require('../controller/index')
 var User = require('../controller/user')
 var Post = require('../controller/post')
 var Comment= require('../controller/comment')
+var Search= require('../controller/search')
 
 
 
@@ -37,6 +38,9 @@ router.get('/delete/:postId',User.loginRequired,Post.delete)
 
 //comment
 router.post('/user/comment', User.loginRequired, Comment.save)
+
+//search
+router.get('/search',Search.search)
 
 
 //测试页面
