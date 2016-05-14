@@ -20,6 +20,8 @@ block content
 		.all_block.block_has
 			.block_head 全部文章
 			.block_body
+				a(href="/post")
+					.btn.btn-primary 写新文章
 				if(user && user.username === name)
 
 					each item in post
@@ -51,5 +53,4 @@ block content
 
 
 
-	br
-	a(href="/post") 写博客->
+

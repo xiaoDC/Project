@@ -3,14 +3,12 @@ block content
 	div.header_mid
 		div( class="normal-search-content")
 			div(class="top_nav_search" id="nav_search_form")  <!--搜索框 -->
-				div(id="search_inner_box")
-					select(name="little_option" class="no_outline")
+				form(action="/search" ,method="GET" )
+					select(name="option" class="no_outline")
 						option 标题
 						option 作者
 
-
-				form(action="/search" method="get" id="top_nav_form")
-					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" value="" autocomplete="off")
+					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" autocomplete="off")
 					input(type="submit" value="搜  索" class="ts_btn")
 
 
@@ -20,7 +18,9 @@ block content
 				.index_list
 					.index_title
 						a(href="/article/#{item.user._id}/#{item._id}")  #{item.title}
-					.index_content #{item.content}
+					.index_content
+						img(src="/images/#{item.user.photo}", alt="#{item.user.username}", width="45px" height="45px")
+						p （摘要）#{item.content}
 					p [ #{item.user.username} ] 发布与 #{item.meta.createAt}
 						span(class=" glyphicon glyphicon-edit") 评论(#{item.commentL})
 						span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
@@ -49,11 +49,16 @@ block content
 					li 长安不见使人愁
 				ul#ad_ul1
 
-
-			.block_body.block_has
-				img(src="/images/2.png")
 			.block_body.block_has
 				img(src="/images/1.png")
+			.all_block.block_has
+				.block_head 用户推荐
+				.block_body.clearfix
+					each photo in head
+						#recommend
+							a(href="/userMain/#{photo._id}")
+								img(src="/images/#{photo.photo}", alt="#{photo.username}", width="65px" height="65px")
+
 
 					
 	script(src="/javascripts/main.js")
