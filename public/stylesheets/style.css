@@ -111,7 +111,7 @@ outline: none;
     width:70px;
     border: none;
 }
-#nav_search_form input:first-child{
+#nav_search_form input:nth-child(2){
     border: none;
     width:360px;
     padding: 6px;
@@ -223,11 +223,19 @@ outline: none;
     font-size: 12px;
 }
 .block_body{
+
     background-color: white;
     border: 1px solid #CCCCCC;
 }
 
-
+#photo_name{
+    padding:15px 60px;
+}
+#photo_name>p{
+    margin: 8px auto auto 28px;
+    font-size: 18px;
+    color: #123555;
+}
 
 #user_show{
     text-align: left;
@@ -316,22 +324,34 @@ outline: none;
     font-weight: 300;
 }
 
+
 .index_content{
-    text-indent:2em;
     margin: 10px 0;
     width:600px;
     height: 50px;
+}
+.index_content>p{
+    margin-top: 23px;
+    width:540px;
+    white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    float: right;
 }
 
 .index_list p span{
     margin-left: 30px;
 }
 
-/* -----------滚动 */
+#recommend{
+    float: left;
+    margin:10px auto 10px 10px;
+
+}
+
+/* -----------滚动----------------------- */
 #ad_content{
-    height: 408px;
+    height: 338px;
     overflow: hidden;
     
 }

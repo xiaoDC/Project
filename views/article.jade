@@ -4,7 +4,10 @@ block content
 		#left_content
 			.all_block
 				.block_head 个人资料
-				.block_body#user_show #{post.user.username}
+				.block_body
+					#photo_name
+						img(src="/images/#{post.user.photo}", alt="#{post.user.username}", width="100px" height="100px")
+						p #{post.user.username}
 
 			a(href="/userMain/#{post.user._id}")
 				.btn.btn-primary.full_line 主页

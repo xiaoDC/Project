@@ -60,8 +60,17 @@ exports.delete=function(req,res){
         if(err){
             console.log(err)
         }
+        Comment.remove({post:_postId})
+            .populate('post')
+            .exec(function(err){
+            if(err){
+                console.log(err)
+            }
 
-        res.redirect('/userMain/'+_user._id)
+            res.redirect('/userMain/'+_user._id)
+        })
+
+
     })
 
 }
@@ -80,7 +89,7 @@ exports.article=function(req,res){
                     console.log(err)
                 }
             })
-            postModel.find({user:_id}).populate('user','username').exec(function(err,info){
+            postModel.find({user:_id}).populate('user').exec(function(err,info){
 
                 postModel
                     .findOne({_id:_postId})
