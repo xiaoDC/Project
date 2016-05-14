@@ -84,7 +84,7 @@ exports.article=function(req,res){
 
                 postModel
                     .findOne({_id:_postId})
-                    .populate('user','username')
+                    .populate('user')
                     .exec(function(err,post){
                         if(err){
                             console.log(err)
@@ -93,6 +93,7 @@ exports.article=function(req,res){
                         Comment.find({post: _postId})
                             .populate('from', 'username')
                             .populate('reply.from reply.to', 'username')
+                            .sort({"meta.updateAt":-1})
                             .exec(function(err,comments){
                                 var replyc=0;
                             comments.forEach(function(c){

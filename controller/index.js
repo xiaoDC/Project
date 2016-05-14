@@ -8,20 +8,18 @@ exports.index= function(req, res) {
         if(err){
             console.log(err)
         }
-        if(user){
-            postModel
-                .find()
-                .sort({"meta.updateAt":-1})
-                .populate('user','username')
-                .exec(function(err,post){
-                    res.render('index',{
-                        title:'首页',
-                        post:post
-                    })
+        postModel
+            .find()
+            .sort({"meta.updateAt":-1})
+            .populate('user')
+            .exec(function(err,post){
+                res.render('index',{
+                    title:'首页',
+                    post:post,
+                    head:user
                 })
-        }
+            })
     })
-
 
 
 }
