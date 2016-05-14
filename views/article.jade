@@ -45,19 +45,21 @@ block content
 				each item in comments
 					.comment_body
 						if item.from
-							h5  #{item.from.username} :
+							h4
+								a.headP(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}")  #{item.from.username} :
 							h6 #{item.meta.createAt}
-							a.callback.headP(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}") 回复
 							.contentC #{item.content}
 						else
 							a.callback.headP(href="#comments", data-cid="#{item._id}") 回复
 
 						if item.reply && item.reply.length > 0
 							each reply in item.reply
-								a.callback.headP(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") 回复11
-								h5 #{reply.from.username} &nbsp;回复&nbsp;#{reply.to.username} :
-								h6 #{item.meta.createAt}
-								.contentC #{reply.content}
+								.sub
+									h5
+										a.headP(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}") #{reply.from.username}
+										small 回复&nbsp;#{reply.to.username} :
+									h6 #{item.meta.createAt}
+									.contentC #{reply.content}
 
 				.comment_head 发表评论
 					#comments
@@ -86,6 +88,6 @@ block content
 										button.btn.btn-primary(type="submit") 提交
 
 				else
-					a 请先登录
+					a#login_c(href="/login") ♥  登录后可评论  ♥
 
 	script(src="/javascripts/detail.js")

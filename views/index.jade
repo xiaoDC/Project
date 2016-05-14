@@ -1,15 +1,16 @@
 extends layout
 block content
-	div.header_mid
-		div( class="normal-search-content")
-			div(class="top_nav_search" id="nav_search_form")  <!--搜索框 -->
-				form(action="/search" ,method="GET" )
-					select(name="option" class="no_outline")
-						option 标题
-						option 作者
+	div.header_mid.clearfix
+		#img_index
+			img(src="/images/logo.png")
+		div(class="top_nav_search" id="nav_search_form")  <!--搜索框 -->
+			form(action="/search" ,method="GET" )
+				select(name="option" class="no_outline")
+					option 标题
+					option 作者
 
-					input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" autocomplete="off")
-					input(type="submit" value="搜  索" class="ts_btn")
+				input(type="text" class="no_outline" data-tel="search_book" name="q"  placeholder="深入理解node.js" autocomplete="off")
+				input(type="submit" value="搜  索" class="ts_btn")
 
 
 	#content.clearfix
@@ -62,5 +63,5 @@ block content
 
 					
 	script(src="/javascripts/main.js")
-	a(href='/post') 写博客
+
 
