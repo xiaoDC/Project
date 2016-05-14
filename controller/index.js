@@ -3,6 +3,7 @@ var userModel = require('../model/user')
 
 
 exports.index= function(req, res) {
+     req.session.lastPage = req.originalUrl
     userModel.find(function(err,user){
         if(err){
             console.log(err)

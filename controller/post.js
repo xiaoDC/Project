@@ -70,6 +70,7 @@ exports.delete=function(req,res){
 
 
 exports.article=function(req,res){
+    req.session.lastPage = req.originalUrl
     var _id = req.params.id
     var _postId = req.params.postId
     userModel.findById(_id,function(err,user){

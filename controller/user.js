@@ -64,7 +64,8 @@ exports.login=function(req,res){
                     if(req.session.user.role=="admin")
                         res.redirect('/userList')
                     else{
-                        res.redirect('/userMain/'+user._id)
+                        console.log()
+                        res.redirect(req.session.lastPage)
                     }
                 } else {
                     console.log('密码错误')
@@ -108,6 +109,7 @@ exports.userList=function(req,res){
 
 //userMain
 exports.userMain=function(req,res){
+    req.session.lastPage = req.originalUrl
     var _id = req.params.id
     userModel.findById(_id,function(err,user){
 
@@ -147,11 +149,9 @@ exports.savePhoto=function(req, res, next){
     var photoData = req.files.uploadPhoto
     var filePath = photoData.path
     var originalFilename = photoData.originalFilename
-
-
-    console.log(photoData)
+/*    console.log(photoData)
     console.log(filePath)
-    console.log(originalFilename)
+    console.log(originalFilename)*/
 
     if (originalFilename) {
         fs.readFile(filePath, function (err, data) {
@@ -183,8 +183,8 @@ exports.savePhoto=function(req, res, next){
 }
 
 exports.updateP = function(req,res){
-    console.log('hah')
-    console.log(req.photo)
+
+    /*console.log(req.photo)*/
     var _user = req.session.user
     if(req.photo){
         userModel.update({_id:_user._id},{$set:{photo:photo}},function(err){
