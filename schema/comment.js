@@ -27,9 +27,9 @@ var CommentSchema = new Schema({
 
 CommentSchema.pre('save', function(next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
+        this.meta.createAt = this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes()
     } else {
-        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()+1)+' '+date.getHours()+':'+date.getMinutes()
+        this.meta.updateAt = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes()
     }
     next()
 })
