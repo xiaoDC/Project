@@ -2,5 +2,6 @@
 the website is based on node.js
 
 <<<<<<< HEAD
-node_modules因内部插件原因提交失败 ，正在解决 。
+完成
+文档待完善
 =======
