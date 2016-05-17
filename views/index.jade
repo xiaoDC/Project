@@ -22,7 +22,7 @@ block content
 					.index_content
 						img(src="/images/#{item.user.photo}", alt="#{item.user.username}", width="45px" height="45px")
 						p （摘要）#{item.content}
-					p [ #{item.user.username} ] 发布与 #{item.meta.createAt}
+					p [ #{item.user.username} ] 发布于 #{item.meta.createAt}
 						span(class=" glyphicon glyphicon-edit") 评论(#{item.commentL})
 						span(class=" glyphicon glyphicon-list-alt") 阅读(#{item.pv})
 

@@ -123,7 +123,7 @@ exports.userMain=function(req,res){
         else{
             postModel
                 .find({user:_id})
-                .sort({"meta.updateAt":-1})
+                .sort({"meta.updateAt":1})
                 .populate('user','username')
                 .exec(function(err,post){
                     var name = user.username
