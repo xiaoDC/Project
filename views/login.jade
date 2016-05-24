@@ -21,33 +21,18 @@ html
 
 							a( href="signup")
 								.btn.btn-primary.btn-xs 免费注册
+		if err
+			#info_l #{err}					
 
 
 		include includes/footer
-		//
-			script.
-				function login(){
-					var username = $('#username').val();
-					var password = $('#password').val();
-					var data = {"username":username,"password":password};
-					$.ajax({
-					url:'login',
-					type:'post',
-					data:data,
-					success:function(data,status){
-					if(status == 'success'){
-					location.href='home';
 
-					}
-
-					},
-					error:function(data,status,e){
-					if(status == "error"){
-					location.href='login';
-						alert("登陆失败！");
+	script.
+		var info = $("#info_l");
+		setTimeout(function(){
+		info.fadeOut();
+		},1000);
 
 
-					}
-					}
-					});
-				}
+
+					

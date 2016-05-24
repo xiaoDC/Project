@@ -6,6 +6,7 @@ var path = require('path')
 
 //signup
 exports.signup=function(req,res){
+     req.session.info = null 
     var _user = req.body.user
     userModel.find({username:_user.username},function(err, user){
 
@@ -35,12 +36,16 @@ exports.showSignup=function(req,res){
 
 //login
 exports.showLogin=function(req,res){
+  
     res.render('login',{
-        title:"登陆页"
+        title:"登陆页",
+        err: req.session.info
     });
+
 }
 
 exports.login=function(req,res){
+    req.session.info = null 
     var _user = req.body.user
     var username = _user.username
     var password = _user.password
@@ -69,11 +74,14 @@ exports.login=function(req,res){
                     }
                 } else {
                     console.log('密码错误')
+                    req.session.info = "密码错误!!"  
+                    console.log(req.session.info)
 
                     res.redirect('/login')
                 }
             })
         } else {
+            req.session.info = "该用户不存在!!!"  
             res.redirect('/login')
         }
     })

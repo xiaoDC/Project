@@ -186,6 +186,14 @@ outline: none;
 }
 
 
+#info_l{
+    color: red;
+    font-size: 20px;
+    position: absolute;
+    left: 570px;
+    top:190px;
+}
+
 /*-----------------*/
 
 #content{
