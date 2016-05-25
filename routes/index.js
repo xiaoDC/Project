@@ -25,6 +25,8 @@ router.get('/logout',User.logout)
 router.get('/userMain/:id',User.userMain)
 //userList
 router.get('/userList',User.loginRequired, User.adminRequired,User.userList)
+
+
 //头像上传
 router.post('/uploadPhoto',User.loginRequired,User.savePhoto)
 

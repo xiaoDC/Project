@@ -100,9 +100,9 @@ exports.article=function(req,res){
                         }
 
                         Comment.find({post: _postId})
-                            .populate('from', 'username')
+                            .populate('from')
                             .populate('reply.from reply.to', 'username')
-                            .sort({"meta.updateAt":-1})
+                            .sort({"meta.updateAt":1})
                             .exec(function(err,comments){
                                 var replyc=0;
                             comments.forEach(function(c){

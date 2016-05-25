@@ -22,7 +22,7 @@ exports.signup=function(req,res){
                 if (err) {
                     console.log(err)
                 }
-                res.redirect('/userList')
+                res.redirect('/login')
             })
         }
     })
@@ -69,7 +69,7 @@ exports.login=function(req,res){
                     if(req.session.user.role=="admin")
                         res.redirect('/userList')
                     else{
-                        console.log()
+                        console.log(req.session.lastPage)
                         res.redirect(req.session.lastPage)
                     }
                 } else {
@@ -131,7 +131,7 @@ exports.userMain=function(req,res){
         else{
             postModel
                 .find({user:_id})
-                .sort({"meta.updateAt":1})
+                .sort({"meta.updateAt":-1})
                 .populate('user','username')
                 .exec(function(err,post){
                     var name = user.username
@@ -206,6 +206,8 @@ exports.updateP = function(req,res){
         res.redirect('/')
     }
 }
+
+
 
 exports.loginRequired = function (req, res, next) {
     var user = req.session.user
