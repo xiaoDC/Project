@@ -17,8 +17,9 @@ the website is based on node.js
 访问量功能
 标题/作者检索
 
-
+网站功能不断完善中
 
 =======
-
-![image](https://github.com/screamingColor/Project/blob/master/img/%E5%9B%BE%E7%89%871.png)
+网站首页：
+logo含义：文人墨客，这里是承载情感和灵感的平台
+![image](https://github.com/screamingColor/Project/blob/master/img/index.png)
