@@ -89,7 +89,7 @@ exports.article=function(req,res){
                     console.log(err)
                 }
             })
-            postModel.find({user:_id}).populate('user').exec(function(err,info){
+            postModel.find({user:_id}).sort({"pv":-1}).populate('user').exec(function(err,info){
 
                 postModel
                     .findOne({_id:_postId})
