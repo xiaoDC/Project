@@ -1,7 +1,7 @@
 # Project
 the website is based on node.js
 
-网站搭建：Express4.x+mongoDB
+网站搭建：Express4.13.1+mongoDB
 模板引擎采用jade
 
 功能分块：
@@ -17,6 +17,6 @@ the website is based on node.js
 访问量功能
 标题/作者检索
 
-文档待完善
+
 
 =======
